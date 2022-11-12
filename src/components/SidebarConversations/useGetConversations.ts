@@ -7,13 +7,12 @@ export function useGetConversations(): {
   loading: boolean;
   conversations: Conversation[];
 } {
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const userId = useUser();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
+    const fetchConversations = async () => {
       try {
         const { data: response } = await axios.get(
           `http://localhost:3005/conversations/${userId}`,
@@ -25,11 +24,11 @@ export function useGetConversations(): {
       setLoading(false);
     };
 
-    fetchData();
+    fetchConversations();
   }, []);
 
   const conversationSortedByMostRecent = [...conversations].sort(
-    (a, b) => a.lastMessageTimestamp - b.lastMessageTimestamp,
+    (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp,
   );
 
   const conversationReorganized = conversationSortedByMostRecent.map(

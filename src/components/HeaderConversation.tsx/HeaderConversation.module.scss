@@ -1,0 +1,9 @@
+.header {
+  background-color: var(--bs-gray-200);
+  height: 75px;
+  align-items: center;
+
+  &__date {
+    text-align: right;
+  }
+}

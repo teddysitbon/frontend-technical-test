@@ -1,0 +1,11 @@
+.conversation {
+  height: 100%;
+
+  &_empty {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
