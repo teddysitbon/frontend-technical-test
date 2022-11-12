@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 import { ConversationItem } from 'components/ConversationItem';
 import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';

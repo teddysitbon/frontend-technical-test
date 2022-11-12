@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import { HeaderConversation } from 'components/HeaderConversation.tsx';
 import { FormMessage } from 'components/FormMessage';
 import { Messages } from 'components/Messages';
+import { ConversationLoading } from 'components/ConversationLoading';
 import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
 
@@ -27,12 +28,12 @@ function Conversation({
   return (
     <Col sm={8} className={styles['conversation']}>
       {loading ? (
-        <div>Loading</div>
+        <ConversationLoading />
       ) : (
         <>
           <HeaderConversation lastMessage={lastMessage} />
           <Messages messages={messages} />
-          <FormMessage />
+          <FormMessage conversationSelected={conversationSelected} />
         </>
       )}
     </Col>

@@ -1,0 +1,13 @@
+@keyframes keyframes-content-loading {
+  0% {
+    background-color: var(--bs-gray-100);
+  }
+  50% {
+    background-color: var(--bs-gray-200);
+  }
+  100% {
+    background-color: var(--bs-gray-100);
+  }
+}
+
+$animation-content-loading: keyframes-content-loading 2000ms infinite;

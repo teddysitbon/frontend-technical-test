@@ -1,0 +1,20 @@
+@import 'styles/animation.scss';
+@import 'styles/size.scss';
+
+.loader {
+  height: 100%;
+
+  &__header {
+    animation: $animation-content-loading;
+    height: $conversation-header-height;
+  }
+
+  &__message {
+    height: $conversation-inner-height;
+  }
+
+  &__footer {
+    height: $conversation-footer-height;
+    animation: $animation-content-loading;
+  }
+}
