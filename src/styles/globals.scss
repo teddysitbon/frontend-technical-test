@@ -1,9 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
 }
 
 a {
@@ -14,3 +17,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#__next {
+  height: 100%;
+}
+
+$orange-100: #c0562a;
+$orange-50: #ff6e14;
