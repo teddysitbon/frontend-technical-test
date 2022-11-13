@@ -13,5 +13,5 @@ export type Action = UpdateConversationSelected;
 
 type UpdateConversationSelected = {
   type: ActionType.UpdateConversationSelected;
-  payload: Partial<State>;
+  payload: { conversationSelected: number };
 };

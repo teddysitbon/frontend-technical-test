@@ -3,9 +3,10 @@ import { Action, ActionType, State } from 'types/action';
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case ActionType.UpdateConversationSelected: {
+      console.log(action.payload.conversationSelected);
       return {
         ...state,
-        ...action.payload,
+        conversationSelected: action.payload.conversationSelected,
       };
     }
     default: {

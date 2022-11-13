@@ -17,10 +17,8 @@ function Conversation({
   sidebarOpened: boolean;
   onClickBackToSidebar: () => void;
 }): JSX.Element {
-  console.log(conversationSelected);
   const { loading, messages } = useGetMessages(conversationSelected);
   const lastMessage = [...messages].pop();
-  console.log(messages);
 
   if (conversationSelected === null) {
     return (
