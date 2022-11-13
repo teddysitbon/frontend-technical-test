@@ -1,8 +1,6 @@
-import classNames from 'classnames';
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import { Col } from 'react-bootstrap';
 import styles from './Avatar.module.scss';
-import { useUser } from 'core/user';
 
 function Avatar({ name }: { name: string }): JSX.Element {
   const initialName = name.charAt(0);

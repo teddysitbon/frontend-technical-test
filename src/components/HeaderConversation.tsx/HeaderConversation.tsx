@@ -1,18 +1,23 @@
 import { memo } from 'react';
 import { DateTime } from 'luxon';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { Message } from 'types/message';
 import styles from './HeaderConversation.module.scss';
 
 function HeaderConversation({
   lastMessage,
+  onClickBackToSidebar,
 }: {
   lastMessage: Message;
+  onClickBackToSidebar: () => void;
 }): JSX.Element {
   return (
     <Row className={styles['header']}>
       <Col sm={6} className={styles['header__name']}>
-        Futur nom !
+        <Button className="d-block d-sm-none" onClick={onClickBackToSidebar}>
+          Back
+        </Button>
+        <span>Futur nom !</span>
       </Col>
       <Col sm={6} className={styles['header__date']}>
         {lastMessage?.timestamp ? (

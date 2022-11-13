@@ -6,9 +6,16 @@ import { Conversation } from 'components/Conversation';
 
 function Home(): JSX.Element {
   const [conversationId, setConversationId] = useState<number>(null);
+  const [sidebarOpened, setSidebarOpened] = useState<boolean>(true);
 
   const handleClickConversation = useCallback((id: number) => {
     setConversationId(id);
+    setSidebarOpened(false);
+  }, []);
+
+  const handleClickBackToSidebar = useCallback(() => {
+    setConversationId(-1);
+    setSidebarOpened(true);
   }, []);
 
   return (
@@ -18,8 +25,13 @@ function Home(): JSX.Element {
           <SidebarConversations
             conversationSelected={conversationId}
             onClick={handleClickConversation}
+            sidebarOpened={sidebarOpened}
           />
-          <Conversation conversationSelected={conversationId} />
+          <Conversation
+            conversationSelected={conversationId}
+            sidebarOpened={sidebarOpened}
+            onClickBackToSidebar={handleClickBackToSidebar}
+          />
         </Row>
       </Container>
     </UserProvider>

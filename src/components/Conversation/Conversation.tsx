@@ -6,11 +6,16 @@ import { Messages } from 'components/Messages';
 import { ConversationLoading } from 'components/ConversationLoading';
 import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
+import classNames from 'classnames';
 
 function Conversation({
   conversationSelected,
+  sidebarOpened,
+  onClickBackToSidebar,
 }: {
   conversationSelected: number;
+  sidebarOpened: boolean;
+  onClickBackToSidebar: () => void;
 }): JSX.Element {
   console.log(conversationSelected);
   const { loading, messages } = useGetMessages(conversationSelected);
@@ -26,12 +31,20 @@ function Conversation({
   }
 
   return (
-    <Col sm={8} className={styles['conversation']}>
+    <Col
+      sm={8}
+      className={classNames(styles['conversation'], {
+        ['d-none d-sm-block']: sidebarOpened,
+      })}
+    >
       {loading ? (
         <ConversationLoading />
       ) : (
         <>
-          <HeaderConversation lastMessage={lastMessage} />
+          <HeaderConversation
+            lastMessage={lastMessage}
+            onClickBackToSidebar={onClickBackToSidebar}
+          />
           <Messages messages={messages} />
           <FormMessage conversationSelected={conversationSelected} />
         </>

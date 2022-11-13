@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useUser } from 'core/user';
 import { memo } from 'react';
-import { Author, Message } from 'types/message';
+import { Message } from 'types/message';
 import styles from './Message.module.scss';
 
 function Message({ message }: { message: Message }): JSX.Element {

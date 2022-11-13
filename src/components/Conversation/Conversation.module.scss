@@ -10,3 +10,9 @@
     font-size: 28px;
   }
 }
+
+@media (max-width: 575px) {
+  .conversation_empty {
+    display: none;
+  }
+}
