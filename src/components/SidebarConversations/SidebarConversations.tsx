@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { Button, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import classNames from 'classnames';
 import { ConversationItem } from 'components/ConversationItem';
 import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';
-import classNames from 'classnames';
 
 function SidebarConversations({
   conversationSelected,

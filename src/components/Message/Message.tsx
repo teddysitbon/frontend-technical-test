@@ -1,6 +1,6 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 import { useUser } from 'core/user';
-import { memo } from 'react';
 import { Message } from 'types/message';
 import styles from './Message.module.scss';
 

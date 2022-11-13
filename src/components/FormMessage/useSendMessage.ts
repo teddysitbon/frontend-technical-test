@@ -37,6 +37,7 @@ export function useSendMessage(conversationId: number): {
           },
         },
       );
+      setValue('');
     } catch (error) {
       console.error(error.message);
     }

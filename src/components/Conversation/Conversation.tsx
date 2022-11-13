@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { Col } from 'react-bootstrap';
+import classNames from 'classnames';
 import { HeaderConversation } from 'components/HeaderConversation.tsx';
 import { FormMessage } from 'components/FormMessage';
 import { Messages } from 'components/Messages';
 import { ConversationLoading } from 'components/ConversationLoading';
 import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
-import classNames from 'classnames';
 
 function Conversation({
   conversationSelected,

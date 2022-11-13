@@ -1,4 +1,4 @@
-import { memo, MouseEventHandler, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { DateTime } from 'luxon';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Avatar } from 'components/Avatar';

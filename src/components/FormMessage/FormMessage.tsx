@@ -1,7 +1,7 @@
-import { ChangeEvent, memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import { Button, Form, Row } from 'react-bootstrap';
-import styles from './FormMessage.module.scss';
 import { useSendMessage } from './useSendMessage';
+import styles from './FormMessage.module.scss';
 
 function FormMessage({
   conversationSelected,
