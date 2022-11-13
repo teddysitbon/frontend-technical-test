@@ -10,4 +10,7 @@ module.exports = {
     removeConsole: false,
     styledComponents: true,
   },
+  env: {
+    SWAGGER_API_URL: 'http://localhost:3005',
+  },
 };

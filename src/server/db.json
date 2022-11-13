@@ -23,42 +23,6 @@
       "senderId": 4,
       "senderNickname": "Elodie",
       "lastMessageTimestamp": 1625648667
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "body": "",
-      "timestamp": 0,
-      "id": 7
-    },
-    {
-      "body": "",
-      "timestamp": 0,
-      "id": 8
-    },
-    {
-      "body": "",
-      "timestamp": 0,
-      "id": 9
-    },
-    {
-      "body": "teteteeee",
-      "timestamp": 0,
-      "id": 10
-    },
-    {
-      "body": "test",
-      "timestamp": "2022-11-12T17:11:07.186+01:00",
-      "authorId": "1",
-      "conversationId": 1,
-      "id": 11
     }
   ],
   "messages": [
@@ -89,16 +53,6 @@
       "timestamp": 1620284667,
       "authorId": 2,
       "body": "Bonjour c'est le premier message de la seconde conversation"
-    },
-    {
-      "body": "string",
-      "timestamp": 0,
-      "id": 5
-    },
-    {
-      "body": "string",
-      "timestamp": 0,
-      "id": 6
     }
   ],
   "users": [

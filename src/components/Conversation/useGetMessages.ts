@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { Message } from 'types/message';
 
@@ -17,7 +17,7 @@ export function useGetMessages(conversationId: number): {
       const fetchConversations = async () => {
         try {
           const { data: response } = await axios.get(
-            `http://localhost:3005/messages/${conversationId}`,
+            `${process.env.SWAGGER_API_URL}/messages/${conversationId}`,
           );
           setMessages(response);
         } catch (error) {
@@ -30,15 +30,15 @@ export function useGetMessages(conversationId: number): {
     }
   }, [conversationId]);
 
-  function getMessageSorted(messages: Message[]): Message[] {
+  const getMessageSorted = useCallback((messages: Message[]) => {
     return [...messages].sort((a, b) => a.timestamp - b.timestamp);
-  }
+  }, []);
 
   return useMemo(
     () => ({
       loading: isLoading,
       messages: getMessageSorted(messages),
     }),
-    [isLoading, messages],
+    [isLoading, getMessageSorted, messages],
   );
 }

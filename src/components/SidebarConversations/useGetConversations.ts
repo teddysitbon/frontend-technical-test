@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useUser } from 'core/user';
 import { Conversation } from 'types/conversation';
@@ -15,7 +15,7 @@ export function useGetConversations(): {
     const fetchConversations = async () => {
       try {
         const { data: response } = await axios.get(
-          `http://localhost:3005/conversations/${userId}`,
+          `${process.env.SWAGGER_API_URL}/conversations/${userId}`,
         );
         setConversations(response);
       } catch (error) {
@@ -27,31 +27,34 @@ export function useGetConversations(): {
     fetchConversations();
   }, []);
 
-  const conversationSortedByMostRecent = [...conversations].sort(
-    (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp,
-  );
+  const getConversationsReorganized = useCallback(
+    (conversations: Conversation[]) => {
+      const conversationsSortedByMostRecent = [...conversations].sort(
+        (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp,
+      );
 
-  const conversationReorganized = conversationSortedByMostRecent.map(
-    (conversation) => {
-      if (conversation.recipientId === Number(userId)) {
-        return {
-          ...conversation,
-          recipientId: conversation.senderId,
-          recipientNickname: conversation.senderNickname,
-          senderId: conversation.recipientId,
-          senderNickname: conversation.recipientNickname,
-        };
-      }
+      return conversationsSortedByMostRecent.map((conversation) => {
+        if (conversation.recipientId === Number(userId)) {
+          return {
+            ...conversation,
+            recipientId: conversation.senderId,
+            recipientNickname: conversation.senderNickname,
+            senderId: conversation.recipientId,
+            senderNickname: conversation.recipientNickname,
+          };
+        }
 
-      return conversation;
+        return conversation;
+      });
     },
+    [userId],
   );
 
   return useMemo(
     () => ({
       loading: isLoading,
-      conversations: conversationReorganized,
+      conversations: getConversationsReorganized(conversations),
     }),
-    [conversationReorganized, isLoading],
+    [conversations, getConversationsReorganized, isLoading],
   );
 }

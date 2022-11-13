@@ -1,8 +1,7 @@
-import { useState, useEffect, useMemo, useCallback, ChangeEvent } from 'react';
+import { useState, useMemo, useCallback, ChangeEvent } from 'react';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { useUser } from 'core/user';
-import { Conversation } from 'types/conversation';
 
 export function useSendMessage(conversationId: number): {
   value: string;
@@ -24,16 +23,20 @@ export function useSendMessage(conversationId: number): {
 
   const sendMessage = useCallback(async () => {
     try {
-      const { data: response } = await axios.post(
-        `http://localhost:3005/conversation/${conversationId}`,
+      await axios.post(
+        `${process.env.SWAGGER_API_URL}/messages/${conversationId}`,
         {
           body: value,
-          timestamp: DateTime.now(),
-          authorId: userId,
+          timestamp: DateTime.now().toUnixInteger(),
+          authorId: Number(userId),
           conversationId,
         },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
       );
-      console.log(response);
     } catch (error) {
       console.error(error.message);
     }
