@@ -5,7 +5,6 @@ import { Avatar } from 'components/Avatar';
 import { Conversation } from 'types/conversation';
 import styles from './ConversationItem.module.scss';
 import { ConversationContext } from 'core/conversation/ConversationContext';
-import { ActionType } from 'types/action';
 
 function ConversationItem({
   conversation,
@@ -16,19 +15,20 @@ function ConversationItem({
   onClick: (id: number) => void;
   active: boolean;
 }): JSX.Element {
-  const { state, dispatch } = useContext(ConversationContext);
-  console.log(state);
+  const { updateConversationSelected } = useContext(ConversationContext);
   const date = DateTime.fromSeconds(
     conversation.lastMessageTimestamp,
   ).toLocaleString({ month: 'long', day: '2-digit' });
 
   const handleClickConversation = useCallback(() => {
     onClick(conversation.id);
-    dispatch({
-      type: ActionType.UpdateConversationSelected,
-      payload: { conversationSelected: conversation.id },
-    });
-  }, [conversation.id, dispatch, onClick]);
+    updateConversationSelected(conversation.id, conversation.recipientNickname);
+  }, [
+    conversation.id,
+    conversation.recipientNickname,
+    onClick,
+    updateConversationSelected,
+  ]);
 
   return (
     <Row className={styles['conversation']} onClick={handleClickConversation}>

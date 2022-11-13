@@ -1,21 +1,19 @@
 import { ReactNode, Reducer, useReducer } from 'react';
-import { Action, State } from 'types/action';
-import { initState } from './constants';
 import { ConversationContext } from './ConversationContext';
-import { reducer } from './reducer';
+import { useConversation } from './useConversation';
 
 export function ConversationProvider({
   children,
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [state, dispatch] = useReducer<Reducer<State, Action>>(
-    reducer,
-    initState,
-  );
+  const { state, updateConversationSelected, updateNameConversation } =
+    useConversation();
 
   return (
-    <ConversationContext.Provider value={{ state, dispatch }}>
+    <ConversationContext.Provider
+      value={{ state, updateConversationSelected, updateNameConversation }}
+    >
       {children}
     </ConversationContext.Provider>
   );

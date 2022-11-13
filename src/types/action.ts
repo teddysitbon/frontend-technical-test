@@ -7,11 +7,12 @@ export enum ActionType {
 export type State = {
   conversations: Conversation[];
   conversationSelected: number;
+  nameConversationSelected: string;
 };
 
 export type Action = UpdateConversationSelected;
 
 type UpdateConversationSelected = {
   type: ActionType.UpdateConversationSelected;
-  payload: { conversationSelected: number };
+  payload: { conversationSelected: number; nameConversationSelected: string };
 };
