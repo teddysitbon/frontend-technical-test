@@ -11,6 +11,6 @@ module.exports = {
     styledComponents: true,
   },
   env: {
-    SWAGGER_API_URL: 'http://localhost:3005',
+    API_URL: 'http://localhost:3005',
   },
 };

@@ -15,7 +15,7 @@ export function useGetConversations(): {
     const fetchConversations = async () => {
       try {
         const { data: response } = await axios.get(
-          `${process.env.SWAGGER_API_URL}/conversations/${userId}`,
+          `${process.env.API_URL}/conversations/${userId}`,
         );
         setConversations(response);
       } catch (error) {

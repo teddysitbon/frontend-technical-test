@@ -24,7 +24,7 @@ export function useSendMessage(conversationId: number): {
   const sendMessage = useCallback(async () => {
     try {
       await axios.post(
-        `${process.env.SWAGGER_API_URL}/messages/${conversationId}`,
+        `${process.env.API_URL}/messages/${conversationId}`,
         {
           body: value,
           timestamp: DateTime.now().toUnixInteger(),

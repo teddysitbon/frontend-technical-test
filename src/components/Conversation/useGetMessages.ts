@@ -17,7 +17,7 @@ export function useGetMessages(conversationId: number): {
       const fetchConversations = async () => {
         try {
           const { data: response } = await axios.get(
-            `${process.env.SWAGGER_API_URL}/messages/${conversationId}`,
+            `${process.env.API_URL}/messages/${conversationId}`,
           );
           setMessages(response);
         } catch (error) {
