@@ -23,30 +23,29 @@ export function useCreateConversation(): {
 
   const createConversation = useCallback(async (userId: string) => {
     try {
-      await axios
-        .post(
-          `${process.env.API_URL}/conversations/${userId}`,
-          {
-            recipientId: userIdLogged,
-            recipientNickname: state.users.find(
-              (user) => user.id === userIdLogged,
-            ).nickname,
-            senderId: Number(userId),
-            senderNickname: state.users.find(
-              (user) => user.id === Number(userId),
-            ).nickname,
-            lastMessageTimestamp: DateTime.now().toUnixInteger(),
+      await axios.post(
+        `${process.env.API_URL}/conversations/${userId}`,
+        {
+          recipientId: userIdLogged,
+          recipientNickname: state.users.find(
+            (user) => user.id === userIdLogged,
+          ).nickname,
+          senderId: Number(userId),
+          senderNickname: state.users.find((user) => user.id === Number(userId))
+            .nickname,
+          lastMessageTimestamp: DateTime.now().toUnixInteger(),
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
           },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
+        },
+      );
+      /*
         .then(
-          (response) => console.log(response.data),
-          //addConversation(response.data)
+          (response) => //addConversation(response.data)
         );
+        */
     } catch (error) {
       console.warn(error.message);
     }
