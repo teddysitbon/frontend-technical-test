@@ -24,7 +24,7 @@ function HeaderConversation({
         <Button className="d-block d-sm-none" onClick={handleBackToSidebar}>
           Back
         </Button>
-        <span>{state.nameConversationSelected}</span>
+        {state.nameConversationSelected}
       </Col>
       <Col sm={6} className={styles['header__date']}>
         {lastMessage?.timestamp ? (

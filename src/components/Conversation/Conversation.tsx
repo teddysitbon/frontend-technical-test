@@ -1,7 +1,10 @@
 import { memo, useContext } from 'react';
 import { Col } from 'react-bootstrap';
+import Image from 'next/image';
 import classNames from 'classnames';
 import { ConversationContext } from 'core/conversation';
+import Logo from 'assets/lbc-logo.webp';
+import Communaute from 'assets/communaute.png';
 import { HeaderConversation } from 'components/HeaderConversation.tsx';
 import { FormMessage } from 'components/FormMessage';
 import { Messages } from 'components/Messages';
@@ -17,7 +20,19 @@ function Conversation(): JSX.Element {
   if (state.conversationSelected === null) {
     return (
       <Col sm={8} className={styles['conversation_empty']}>
-        Select a conversation from the left :)
+        <Image
+          src={Logo}
+          alt="Leboncoin Frontend Team"
+          width={192}
+          height={60}
+          className={styles['image__logo']}
+        />
+        Select a conversation from the left
+        <Image
+          src={Communaute}
+          alt="Leboncoin Community"
+          className={styles['image__community']}
+        />
       </Col>
     );
   }

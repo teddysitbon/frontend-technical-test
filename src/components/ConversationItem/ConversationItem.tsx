@@ -1,10 +1,11 @@
 import { memo, useCallback, useContext } from 'react';
 import { DateTime } from 'luxon';
 import { Button, Col, Row } from 'react-bootstrap';
-import { ConversationContext } from 'core/conversation/ConversationContext';
 import { Avatar } from 'components/Avatar';
 import { Conversation } from 'types/conversation';
 import styles from './ConversationItem.module.scss';
+import { ConversationContext } from 'core/conversation/ConversationContext';
+import classNames from 'classnames';
 
 function ConversationItem({
   conversation,
@@ -34,15 +35,12 @@ function ConversationItem({
       <Button
         variant="light"
         size="lg"
-        className={styles['conversation__button']}
-        active={active}
+        className={classNames(styles['conversation__button'], {
+          [styles['conversation__button_active']]: active,
+        })}
       >
         <Row>
-          <Avatar
-            sm-hide
-            name={conversation.recipientNickname}
-            active={active}
-          />
+          <Avatar sm-hide name={conversation.recipientNickname} />
           <Col sm={6} className={styles['conversation__name']}>
             {conversation.recipientNickname}
           </Col>

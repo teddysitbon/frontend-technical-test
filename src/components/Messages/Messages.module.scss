@@ -1,8 +1,10 @@
+@import 'styles/size.scss';
+
 .container {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 150px);
-  max-height: calc(100% - 150px);
+  height: $conversation-inner-height;
+  max-height: $conversation-inner-height;
   overflow-y: auto;
   row-gap: 10px;
   padding: 10px;

@@ -16,11 +16,5 @@
     border-radius: 50%;
     overflow: hidden;
     text-transform: uppercase;
-
-    &_active {
-      color: $orange-50;
-      border: 2px solid $orange-50;
-      font-weight: 500;
-    }
   }
 }

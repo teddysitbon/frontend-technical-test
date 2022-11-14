@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import classNames from 'classnames';
 import { Button, Form, Row } from 'react-bootstrap';
 import { useSendMessage } from './useSendMessage';
 import styles from './FormMessage.module.scss';
@@ -21,13 +22,14 @@ function FormMessage({
         <Form.Text
           className={styles['form__text']}
           as="textarea"
-          placeholder="Enter Message"
+          placeholder="Enter a message"
           value={value}
           onChange={handleChange}
         />
         <Button
-          className={styles['form__button']}
-          variant="primary"
+          className={classNames(styles['form__button'], {
+            [styles['form__button_disabled']]: value === '',
+          })}
           type="button"
           onClick={handleClick}
           disabled={value === ''}
