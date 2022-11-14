@@ -2,19 +2,17 @@
 @import 'styles/color.scss';
 
 .header {
-  background-color: $violet-light;
-  color: $violet-100;
+  background-color: $orange-light;
   height: $conversation-header-height;
   align-items: center;
+  color: var(--bs-gray-800);
 
   &__date {
     text-align: right;
-    color: $violet-dark;
   }
 
   &__name {
     font-weight: 500;
     font-size: 1.2rem;
-    color: $violet-dark;
   }
 }

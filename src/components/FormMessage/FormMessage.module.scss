@@ -30,7 +30,8 @@ $button-width: 150px;
     background-color: $orange-50;
     border-color: $orange-50;
 
-    &:focus {
+    &:focus,
+    &:hover {
       background-color: $orange-50;
       border-color: $orange-50;
     }
