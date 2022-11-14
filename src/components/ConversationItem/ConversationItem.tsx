@@ -5,28 +5,28 @@ import { Avatar } from 'components/Avatar';
 import { Conversation } from 'types/conversation';
 import styles from './ConversationItem.module.scss';
 import { ConversationContext } from 'core/conversation/ConversationContext';
+import classNames from 'classnames';
 
 function ConversationItem({
   conversation,
-  onClick,
   active,
 }: {
   conversation: Conversation;
-  onClick: (id: number) => void;
   active: boolean;
 }): JSX.Element {
-  const { updateConversationSelected } = useContext(ConversationContext);
+  const { updateConversationSelected, toggleSidebar } =
+    useContext(ConversationContext);
   const date = DateTime.fromSeconds(
     conversation.lastMessageTimestamp,
   ).toLocaleString({ month: 'long', day: '2-digit' });
 
   const handleClickConversation = useCallback(() => {
-    onClick(conversation.id);
     updateConversationSelected(conversation.id, conversation.recipientNickname);
+    toggleSidebar(false);
   }, [
     conversation.id,
     conversation.recipientNickname,
-    onClick,
+    toggleSidebar,
     updateConversationSelected,
   ]);
 
@@ -35,8 +35,9 @@ function ConversationItem({
       <Button
         variant="light"
         size="lg"
-        className={styles['conversation__button']}
-        active={active}
+        className={classNames(styles['conversation__button'], {
+          [styles['conversation__button_active']]: active,
+        })}
       >
         <Row>
           <Avatar sm-hide name={conversation.recipientNickname} />

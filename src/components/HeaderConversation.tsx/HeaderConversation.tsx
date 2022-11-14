@@ -1,4 +1,4 @@
-import { memo, useContext } from 'react';
+import { memo, useCallback, useContext } from 'react';
 import { DateTime } from 'luxon';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Message } from 'types/message';
@@ -7,17 +7,21 @@ import { ConversationContext } from 'core/conversation';
 
 function HeaderConversation({
   lastMessage,
-  onClickBackToSidebar,
+  toggleSidebar,
 }: {
   lastMessage: Message;
-  onClickBackToSidebar: () => void;
+  toggleSidebar: (isOpened: boolean) => void;
 }): JSX.Element {
   const { state } = useContext(ConversationContext);
+
+  const handleBackToSidebar = useCallback(() => {
+    toggleSidebar(true);
+  }, [toggleSidebar]);
 
   return (
     <Row className={styles['header']}>
       <Col sm={6} className={styles['header__name']}>
-        <Button className="d-block d-sm-none" onClick={onClickBackToSidebar}>
+        <Button className="d-block d-sm-none" onClick={handleBackToSidebar}>
           Back
         </Button>
         <span>{state.nameConversationSelected}</span>

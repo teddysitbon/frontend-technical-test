@@ -9,14 +9,8 @@ import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
 import { ConversationContext } from 'core/conversation';
 
-function Conversation({
-  sidebarOpened,
-  onClickBackToSidebar,
-}: {
-  sidebarOpened: boolean;
-  onClickBackToSidebar: () => void;
-}): JSX.Element {
-  const { state } = useContext(ConversationContext);
+function Conversation(): JSX.Element {
+  const { state, toggleSidebar } = useContext(ConversationContext);
   const { loading } = useGetMessages(state.conversationSelected);
   const lastMessage = [...state.messages].pop();
 
@@ -32,7 +26,7 @@ function Conversation({
     <Col
       sm={8}
       className={classNames(styles['conversation'], {
-        ['d-none d-sm-block']: sidebarOpened,
+        ['d-none d-sm-block']: state.sidebarOpened,
       })}
     >
       {loading ? (
@@ -41,7 +35,7 @@ function Conversation({
         <>
           <HeaderConversation
             lastMessage={lastMessage}
-            onClickBackToSidebar={onClickBackToSidebar}
+            toggleSidebar={toggleSidebar}
           />
           <Messages messages={state.messages} />
           <FormMessage conversationSelected={state.conversationSelected} />

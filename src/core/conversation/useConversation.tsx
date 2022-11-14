@@ -46,13 +46,29 @@ export function useConversation(): TypeConversationContext {
     });
   }, []);
 
+  const toggleSidebar = useCallback((isOpened: boolean): void => {
+    dispatch({
+      type: ActionType.ToggleSidebar,
+      payload: {
+        isOpened,
+      },
+    });
+  }, []);
+
   return useMemo(
     () => ({
       state,
       updateConversationSelected,
       updateMessages,
       addMessage,
+      toggleSidebar,
     }),
-    [state, updateConversationSelected, updateMessages, addMessage],
+    [
+      state,
+      updateConversationSelected,
+      updateMessages,
+      addMessage,
+      toggleSidebar,
+    ],
   );
 }

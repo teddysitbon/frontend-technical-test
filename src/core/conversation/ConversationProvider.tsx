@@ -7,12 +7,23 @@ export function ConversationProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const { state, updateConversationSelected, updateMessages, addMessage } =
-    useConversation();
+  const {
+    state,
+    updateConversationSelected,
+    updateMessages,
+    addMessage,
+    toggleSidebar,
+  } = useConversation();
 
   return (
     <ConversationContext.Provider
-      value={{ state, updateConversationSelected, updateMessages, addMessage }}
+      value={{
+        state,
+        updateConversationSelected,
+        updateMessages,
+        addMessage,
+        toggleSidebar,
+      }}
     >
       {children}
     </ConversationContext.Provider>

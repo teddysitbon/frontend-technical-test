@@ -21,6 +21,12 @@ export function reducer(state: State, action: Action): State {
         messages: [...state.messages, action.payload.message],
       };
     }
+    case ActionType.ToggleSidebar: {
+      return {
+        ...state,
+        sidebarOpened: action.payload.isOpened,
+      };
+    }
     default: {
       throw Error('Wrong type of action!');
     }

@@ -1,4 +1,4 @@
-import { memo, useContext } from 'react';
+import { memo, useCallback, useContext, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import { ConversationItem } from 'components/ConversationItem';
@@ -6,13 +6,7 @@ import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';
 import { ConversationContext } from 'core/conversation';
 
-function SidebarConversations({
-  onClick,
-  sidebarOpened,
-}: {
-  onClick: (id: number) => void;
-  sidebarOpened: boolean;
-}): JSX.Element {
+function SidebarConversations(): JSX.Element {
   const { loading, conversations } = useGetConversations();
   const { state } = useContext(ConversationContext);
 
@@ -20,7 +14,7 @@ function SidebarConversations({
     <Col
       sm={4}
       className={classNames(styles['conversation'], {
-        ['d-none d-sm-block']: !sidebarOpened,
+        ['d-none d-sm-block']: !state.sidebarOpened,
       })}
     >
       {loading && <div>Loading</div>}
@@ -28,7 +22,6 @@ function SidebarConversations({
         <ConversationItem
           conversation={conversation}
           key={conversation.id}
-          onClick={onClick}
           active={state.conversationSelected === conversation.id}
         />
       ))}
