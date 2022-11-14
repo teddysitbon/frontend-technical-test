@@ -1,5 +1,6 @@
 $conversation-header-height: 75px;
 $conversation-footer-height: 100px;
+
 $conversation-inner-height: calc(
   100% - ($conversation-header-height + $conversation-footer-height)
 );

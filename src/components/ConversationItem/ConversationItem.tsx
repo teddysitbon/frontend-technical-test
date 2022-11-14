@@ -41,10 +41,10 @@ function ConversationItem({
       >
         <Row>
           <Avatar sm-hide name={conversation.recipientNickname} />
-          <Col sm={6} className={styles['conversation__name']}>
+          <Col xs={6} className={styles['conversation__name']}>
             {conversation.recipientNickname}
           </Col>
-          <Col sm={3} className={styles['conversation__date']}>
+          <Col xs={3} className={styles['conversation__date']}>
             {date}
           </Col>
         </Row>

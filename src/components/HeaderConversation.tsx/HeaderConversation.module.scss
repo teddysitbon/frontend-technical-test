@@ -14,5 +14,12 @@
   &__name {
     font-weight: 500;
     font-size: 1.2rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &__button {
+    margin-right: 5px;
   }
 }
