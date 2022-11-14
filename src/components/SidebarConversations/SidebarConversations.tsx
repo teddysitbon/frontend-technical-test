@@ -1,14 +1,24 @@
-import { memo, useCallback, useContext, useState } from 'react';
-import { Col } from 'react-bootstrap';
+import { memo, useContext, useState, useCallback } from 'react';
+import { Button, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import { ConversationContext } from 'core/conversation';
 import { ConversationItem } from 'components/ConversationItem';
+import { PopupCreateConversation } from 'components/PopupCreateConversation';
 import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';
 
 function SidebarConversations(): JSX.Element {
+  const [isModalOpened, setModalOpened] = useState<boolean>(false);
   const { loading, conversations } = useGetConversations();
   const { state } = useContext(ConversationContext);
+
+  const handleOpenPopup = useCallback(() => {
+    setModalOpened(true);
+  }, []);
+
+  const handleClosePopup = useCallback(() => {
+    setModalOpened(false);
+  }, []);
 
   return (
     <Col
@@ -24,6 +34,9 @@ function SidebarConversations(): JSX.Element {
           active={state.conversationSelected === conversation.id}
         />
       ))}
+      <Button className={styles['button']} onClick={handleOpenPopup}>
+        Create a conversation
+      </Button>
       <div
         className={classNames(
           styles['conversation__footer'],
@@ -32,6 +45,7 @@ function SidebarConversations(): JSX.Element {
       >
         Select a conversation
       </div>
+      {isModalOpened && <PopupCreateConversation onClose={handleClosePopup} />}
     </Col>
   );
 }

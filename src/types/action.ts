@@ -1,10 +1,12 @@
 import { Message } from './message';
+import { User } from './user';
 
 export enum ActionType {
   UpdateConversationSelected = 'UpdateConversationSelected',
   UpdateMessages = 'UpdateMessages',
   AddMessage = 'AddMessage',
   ToggleSidebar = 'ToggleSidebar',
+  GetUsers = 'GetUsers',
 }
 
 export type State = {
@@ -12,13 +14,15 @@ export type State = {
   conversationSelected: number;
   nameConversationSelected: string;
   sidebarOpened: boolean;
+  users: User[];
 };
 
 export type Action =
   | UpdateConversationSelected
   | UpdateMessages
   | AddMessage
-  | ToggleSidebar;
+  | ToggleSidebar
+  | GetUsers;
 
 type UpdateConversationSelected = {
   type: ActionType.UpdateConversationSelected;
@@ -40,10 +44,16 @@ type ToggleSidebar = {
   payload: { isOpened: boolean };
 };
 
+type GetUsers = {
+  type: ActionType.GetUsers;
+  payload: { users: User[] };
+};
+
 export type TypeConversationContext = {
   state: State;
   updateConversationSelected: (conversationId: number, name: string) => void;
   updateMessages: (messages: Message[]) => void;
   addMessage: (message: Message) => void;
   toggleSidebar: (isOpened: boolean) => void;
+  updateUsers: (users: User[]) => void;
 };

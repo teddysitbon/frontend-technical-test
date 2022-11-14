@@ -13,6 +13,7 @@ export function ConversationProvider({
     updateMessages,
     addMessage,
     toggleSidebar,
+    updateUsers,
   } = useConversation();
 
   return (
@@ -23,6 +24,7 @@ export function ConversationProvider({
         updateMessages,
         addMessage,
         toggleSidebar,
+        updateUsers,
       }}
     >
       {children}

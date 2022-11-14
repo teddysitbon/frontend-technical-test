@@ -15,6 +15,12 @@ export function reducer(state: State, action: Action): State {
         messages: action.payload.messages,
       };
     }
+    case ActionType.GetUsers: {
+      return {
+        ...state,
+        users: action.payload.users,
+      };
+    }
     case ActionType.AddMessage: {
       return {
         ...state,

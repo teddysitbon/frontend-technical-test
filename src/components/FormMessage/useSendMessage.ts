@@ -9,7 +9,7 @@ export function useSendMessage(conversationId: number): {
   handleChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  handleSendMessage: any;
+  handleSendMessage: (value: string) => Promise<void>;
 } {
   const [value, setValue] = useState<string>('');
   const userId = useUser();

@@ -6,6 +6,7 @@ import {
   TypeConversationContext,
 } from 'types/action';
 import { Message } from 'types/message';
+import { User } from 'types/user';
 import { initState } from './constants';
 import { reducer } from './reducer';
 
@@ -46,6 +47,15 @@ export function useConversation(): TypeConversationContext {
     });
   }, []);
 
+  const updateUsers = useCallback((users: User[]): void => {
+    dispatch({
+      type: ActionType.GetUsers,
+      payload: {
+        users,
+      },
+    });
+  }, []);
+
   const toggleSidebar = useCallback((isOpened: boolean): void => {
     dispatch({
       type: ActionType.ToggleSidebar,
@@ -61,12 +71,14 @@ export function useConversation(): TypeConversationContext {
       updateConversationSelected,
       updateMessages,
       addMessage,
+      updateUsers,
       toggleSidebar,
     }),
     [
       state,
       updateConversationSelected,
       updateMessages,
+      updateUsers,
       addMessage,
       toggleSidebar,
     ],

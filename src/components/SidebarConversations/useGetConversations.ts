@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import axios from 'axios';
 import { useUser } from 'core/user';
 import { Conversation } from 'types/conversation';
+import { ConversationContext } from 'core/conversation';
 
 export function useGetConversations(): {
   loading: boolean;
@@ -10,6 +11,7 @@ export function useGetConversations(): {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const userId = useUser();
+  const { updateUsers } = useContext(ConversationContext);
 
   useEffect(() => {
     const fetchConversations = async () => {
@@ -25,6 +27,20 @@ export function useGetConversations(): {
     };
 
     fetchConversations();
+  }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        await axios
+          .get(`${process.env.API_URL}/users`)
+          .then((response) => updateUsers(response.data));
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   const getConversationsReorganized = useCallback(

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { Button, Form, Row } from 'react-bootstrap';
 import { useSendMessage } from './useSendMessage';
@@ -12,9 +12,9 @@ function FormMessage({
   const { value, handleChange, handleSendMessage } =
     useSendMessage(conversationSelected);
 
-  function handleClick(): void {
+  const handleClick = useCallback(() => {
     handleSendMessage(value);
-  }
+  }, [handleSendMessage, value]);
 
   return (
     <Row className={styles['container']}>

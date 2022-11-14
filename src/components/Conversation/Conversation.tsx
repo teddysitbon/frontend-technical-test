@@ -17,8 +17,6 @@ function Conversation(): JSX.Element {
   const { loading } = useGetMessages(state.conversationSelected);
   const lastMessage = [...state.messages].pop();
 
-  console.log(state.conversationSelected);
-
   if (state.conversationSelected === null) {
     return (
       <Col sm={8} className={styles['conversation_empty']}>
