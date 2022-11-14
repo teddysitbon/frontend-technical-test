@@ -4,12 +4,13 @@ import { UserProvider } from 'core/user';
 import { ConversationProvider } from 'core/conversation';
 import { SidebarConversations } from 'components/SidebarConversations';
 import { Conversation } from 'components/Conversation';
+import styles from './App.module.scss';
 
 function Home(): JSX.Element {
   return (
     <UserProvider>
       <ConversationProvider>
-        <Container fluid className="h-100">
+        <Container className={styles['container']}>
           <Row className="h-100">
             <SidebarConversations />
             <Conversation />
