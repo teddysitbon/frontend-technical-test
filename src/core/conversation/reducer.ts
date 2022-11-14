@@ -9,6 +9,18 @@ export function reducer(state: State, action: Action): State {
         nameConversationSelected: action.payload.nameConversationSelected,
       };
     }
+    case ActionType.UpdateMessages: {
+      return {
+        ...state,
+        messages: action.payload.messages,
+      };
+    }
+    case ActionType.AddMessage: {
+      return {
+        ...state,
+        messages: [...state.messages, action.payload.message],
+      };
+    }
     default: {
       throw Error('Wrong type of action!');
     }

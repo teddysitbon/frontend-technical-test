@@ -5,8 +5,3 @@ export interface Message {
   timestamp: number;
   body: string;
 }
-
-export enum Author {
-  Sender = 'sender',
-  Receiver = 'receiver',
-}

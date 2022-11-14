@@ -1,7 +1,7 @@
 import { State } from 'types/action';
 
 export const initState: State = {
-  conversations: [],
+  messages: [],
   conversationSelected: null,
   nameConversationSelected: '',
 };

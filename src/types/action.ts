@@ -1,18 +1,37 @@
-import { Conversation } from './conversation';
+import { Message } from './message';
 
 export enum ActionType {
   UpdateConversationSelected = 'UpdateConversationSelected',
+  UpdateMessages = 'UpdateMessages',
+  AddMessage = 'AddMessage',
 }
 
 export type State = {
-  conversations: Conversation[];
+  messages: Message[];
   conversationSelected: number;
   nameConversationSelected: string;
 };
 
-export type Action = UpdateConversationSelected;
+export type Action = UpdateConversationSelected | UpdateMessages | AddMessage;
 
 type UpdateConversationSelected = {
   type: ActionType.UpdateConversationSelected;
   payload: { conversationSelected: number; nameConversationSelected: string };
+};
+
+type UpdateMessages = {
+  type: ActionType.UpdateMessages;
+  payload: { messages: Message[] };
+};
+
+type AddMessage = {
+  type: ActionType.AddMessage;
+  payload: { message: Message };
+};
+
+export type TypeConversationContext = {
+  state: State;
+  updateConversationSelected: (conversationId: number, name: string) => void;
+  updateMessages: (messages: Message[]) => void;
+  addMessage: (message: Message) => void;
 };

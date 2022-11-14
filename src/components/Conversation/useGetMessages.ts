@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import axios from 'axios';
 import { Message } from 'types/message';
+import { ConversationContext } from 'core/conversation';
 
 export function useGetMessages(conversationId: number): {
   loading: boolean;
@@ -8,6 +9,11 @@ export function useGetMessages(conversationId: number): {
 } {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
+  const { updateMessages } = useContext(ConversationContext);
+
+  const getMessageSorted = useCallback((messages: Message[]) => {
+    return [...messages].sort((a, b) => a.timestamp - b.timestamp);
+  }, []);
 
   useEffect(() => {
     setMessages([]);
@@ -20,6 +26,7 @@ export function useGetMessages(conversationId: number): {
             `${process.env.API_URL}/messages/${conversationId}`,
           );
           setMessages(response);
+          updateMessages(getMessageSorted(response));
         } catch (error) {
           throw new Error(error as string);
         }
@@ -28,11 +35,7 @@ export function useGetMessages(conversationId: number): {
 
       fetchConversations();
     }
-  }, [conversationId]);
-
-  const getMessageSorted = useCallback((messages: Message[]) => {
-    return [...messages].sort((a, b) => a.timestamp - b.timestamp);
-  }, []);
+  }, [conversationId, getMessageSorted, updateMessages]);
 
   return useMemo(
     () => ({

@@ -1,7 +1,12 @@
 import { Reducer, useCallback, useMemo, useReducer } from 'react';
-import { Action, ActionType, State } from 'types/action';
+import {
+  Action,
+  ActionType,
+  State,
+  TypeConversationContext,
+} from 'types/action';
+import { Message } from 'types/message';
 import { initState } from './constants';
-import { TypeConversationContext } from './ConversationContext';
 import { reducer } from './reducer';
 
 export function useConversation(): TypeConversationContext {
@@ -23,11 +28,31 @@ export function useConversation(): TypeConversationContext {
     [],
   );
 
+  const updateMessages = useCallback((messages: Message[]): void => {
+    dispatch({
+      type: ActionType.UpdateMessages,
+      payload: {
+        messages,
+      },
+    });
+  }, []);
+
+  const addMessage = useCallback((message: Message): void => {
+    dispatch({
+      type: ActionType.AddMessage,
+      payload: {
+        message,
+      },
+    });
+  }, []);
+
   return useMemo(
     () => ({
       state,
       updateConversationSelected,
+      updateMessages,
+      addMessage,
     }),
-    [state, updateConversationSelected],
+    [state, updateConversationSelected, updateMessages, addMessage],
   );
 }

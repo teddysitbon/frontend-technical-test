@@ -1,10 +1,5 @@
 import { createContext } from 'react';
-import { State } from 'types/action';
-
-export type TypeConversationContext = {
-  state: State;
-  updateConversationSelected: (conversationId: number, name: string) => void;
-};
+import { State, TypeConversationContext } from 'types/action';
 
 export const ConversationContext = createContext<
   Partial<TypeConversationContext>
