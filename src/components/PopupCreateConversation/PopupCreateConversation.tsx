@@ -1,4 +1,4 @@
-import { memo, useContext, useCallback } from 'react';
+import { memo, useContext } from 'react';
 import { ConversationContext } from 'core/conversation';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useCreateConversation } from './useCreateConversation';

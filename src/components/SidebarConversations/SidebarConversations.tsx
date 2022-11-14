@@ -34,11 +34,9 @@ function SidebarConversations(): JSX.Element {
           active={state.conversationSelected === conversation.id}
         />
       ))}
-      {/*
       <Button className={styles['button']} onClick={handleOpenPopup}>
         Create a conversation
       </Button>
-      */}
       <div
         className={classNames(
           styles['conversation__footer'],

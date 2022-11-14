@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import axios from 'axios';
 import { useUser } from 'core/user';
-import { Conversation } from 'types/conversation';
 import { ConversationContext } from 'core/conversation';
+import { Conversation } from 'types/conversation';
 
 export function useGetConversations(): {
   loading: boolean;

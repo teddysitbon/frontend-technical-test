@@ -1,11 +1,11 @@
 import { memo, useCallback, useContext } from 'react';
 import { DateTime } from 'luxon';
+import classNames from 'classnames';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Avatar } from 'components/Avatar';
+import { ConversationContext } from 'core/conversation/ConversationContext';
 import { Conversation } from 'types/conversation';
 import styles from './ConversationItem.module.scss';
-import { ConversationContext } from 'core/conversation/ConversationContext';
-import classNames from 'classnames';
 
 function ConversationItem({
   conversation,
