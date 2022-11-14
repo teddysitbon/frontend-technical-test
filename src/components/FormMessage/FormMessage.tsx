@@ -30,6 +30,7 @@ function FormMessage({
           variant="primary"
           type="button"
           onClick={handleClick}
+          disabled={value === ''}
         >
           Send
         </Button>

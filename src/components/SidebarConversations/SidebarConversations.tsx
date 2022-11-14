@@ -1,20 +1,20 @@
-import { memo } from 'react';
+import { memo, useContext } from 'react';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import { ConversationItem } from 'components/ConversationItem';
 import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';
+import { ConversationContext } from 'core/conversation';
 
 function SidebarConversations({
-  conversationSelected,
   onClick,
   sidebarOpened,
 }: {
-  conversationSelected: number;
   onClick: (id: number) => void;
   sidebarOpened: boolean;
 }): JSX.Element {
   const { loading, conversations } = useGetConversations();
+  const { state } = useContext(ConversationContext);
 
   return (
     <Col
@@ -29,7 +29,7 @@ function SidebarConversations({
           conversation={conversation}
           key={conversation.id}
           onClick={onClick}
-          active={conversationSelected === conversation.id}
+          active={state.conversationSelected === conversation.id}
         />
       ))}
     </Col>

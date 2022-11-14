@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useContext } from 'react';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import { HeaderConversation } from 'components/HeaderConversation.tsx';
@@ -7,20 +7,20 @@ import { Messages } from 'components/Messages';
 import { ConversationLoading } from 'components/ConversationLoading';
 import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
+import { ConversationContext } from 'core/conversation';
 
 function Conversation({
-  conversationSelected,
   sidebarOpened,
   onClickBackToSidebar,
 }: {
-  conversationSelected: number;
   sidebarOpened: boolean;
   onClickBackToSidebar: () => void;
 }): JSX.Element {
-  const { loading, messages } = useGetMessages(conversationSelected);
-  const lastMessage = [...messages].pop();
+  const { state } = useContext(ConversationContext);
+  const { loading } = useGetMessages(state.conversationSelected);
+  const lastMessage = [...state.messages].pop();
 
-  if (conversationSelected === null) {
+  if (state.conversationSelected === null) {
     return (
       <Col sm={8} className={styles['conversation_empty']}>
         Select a conversation from the left :)
@@ -43,8 +43,8 @@ function Conversation({
             lastMessage={lastMessage}
             onClickBackToSidebar={onClickBackToSidebar}
           />
-          <Messages messages={messages} />
-          <FormMessage conversationSelected={conversationSelected} />
+          <Messages messages={state.messages} />
+          <FormMessage conversationSelected={state.conversationSelected} />
         </>
       )}
     </Col>

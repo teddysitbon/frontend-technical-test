@@ -6,16 +6,13 @@ import { Conversation } from 'components/Conversation';
 import { ConversationProvider } from 'core/conversation';
 
 function Home(): JSX.Element {
-  const [conversationId, setConversationId] = useState<number>(null);
   const [sidebarOpened, setSidebarOpened] = useState<boolean>(true);
 
   const handleClickConversation = useCallback((id: number) => {
-    setConversationId(id);
     setSidebarOpened(false);
   }, []);
 
   const handleClickBackToSidebar = useCallback(() => {
-    setConversationId(-1);
     setSidebarOpened(true);
   }, []);
 
@@ -25,12 +22,10 @@ function Home(): JSX.Element {
         <Container fluid className="h-100">
           <Row className="h-100">
             <SidebarConversations
-              conversationSelected={conversationId}
               onClick={handleClickConversation}
               sidebarOpened={sidebarOpened}
             />
             <Conversation
-              conversationSelected={conversationId}
               sidebarOpened={sidebarOpened}
               onClickBackToSidebar={handleClickBackToSidebar}
             />

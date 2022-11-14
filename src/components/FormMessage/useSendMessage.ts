@@ -41,6 +41,7 @@ export function useSendMessage(conversationId: number): {
           },
         )
         .then((response) => addMessage(response.data));
+
       setValue('');
     } catch (error) {
       console.warn(error.message);
