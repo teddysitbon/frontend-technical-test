@@ -1,10 +1,10 @@
 import { memo, useCallback, useContext, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames';
+import { ConversationContext } from 'core/conversation';
 import { ConversationItem } from 'components/ConversationItem';
 import { useGetConversations } from './useGetConversations';
 import styles from './SidebarConversations.module.scss';
-import { ConversationContext } from 'core/conversation';
 
 function SidebarConversations(): JSX.Element {
   const { loading, conversations } = useGetConversations();

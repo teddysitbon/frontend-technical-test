@@ -1,9 +1,9 @@
-import { memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { UserProvider } from 'core/user';
+import { ConversationProvider } from 'core/conversation';
 import { SidebarConversations } from 'components/SidebarConversations';
 import { Conversation } from 'components/Conversation';
-import { ConversationProvider } from 'core/conversation';
 
 function Home(): JSX.Element {
   return (

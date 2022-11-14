@@ -1,13 +1,13 @@
 import { memo, useContext } from 'react';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames';
+import { ConversationContext } from 'core/conversation';
 import { HeaderConversation } from 'components/HeaderConversation.tsx';
 import { FormMessage } from 'components/FormMessage';
 import { Messages } from 'components/Messages';
 import { ConversationLoading } from 'components/ConversationLoading';
 import { useGetMessages } from './useGetMessages';
 import styles from './Conversation.module.scss';
-import { ConversationContext } from 'core/conversation';
 
 function Conversation(): JSX.Element {
   const { state, toggleSidebar } = useContext(ConversationContext);

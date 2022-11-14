@@ -1,9 +1,9 @@
 import { memo, useCallback, useContext } from 'react';
 import { DateTime } from 'luxon';
 import { Button, Col, Row } from 'react-bootstrap';
+import { ConversationContext } from 'core/conversation';
 import { Message } from 'types/message';
 import styles from './HeaderConversation.module.scss';
-import { ConversationContext } from 'core/conversation';
 
 function HeaderConversation({
   lastMessage,
@@ -15,7 +15,7 @@ function HeaderConversation({
   const { state } = useContext(ConversationContext);
 
   const handleBackToSidebar = useCallback(() => {
-    toggleSidebar(true);
+    toggleSidebar(false);
   }, [toggleSidebar]);
 
   return (
