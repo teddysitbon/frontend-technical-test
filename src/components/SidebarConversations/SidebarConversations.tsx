@@ -17,7 +17,6 @@ function SidebarConversations(): JSX.Element {
         ['d-none d-sm-block']: !state.sidebarOpened,
       })}
     >
-      {loading && <div>Loading</div>}
       {conversations.map((conversation) => (
         <ConversationItem
           conversation={conversation}
@@ -25,6 +24,14 @@ function SidebarConversations(): JSX.Element {
           active={state.conversationSelected === conversation.id}
         />
       ))}
+      <div
+        className={classNames(
+          styles['conversation__footer'],
+          'd-block d-sm-none',
+        )}
+      >
+        Select a conversation
+      </div>
     </Col>
   );
 }

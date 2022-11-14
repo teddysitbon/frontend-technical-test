@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
 
-export function useUser(): string {
+export function useUser(): number {
   return useContext(UserContext);
 }

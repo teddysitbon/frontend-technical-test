@@ -102,6 +102,13 @@
       "authorId": 1,
       "conversationId": 2,
       "id": 11
+    },
+    {
+      "body": "Premier message !",
+      "timestamp": 1668427225,
+      "authorId": 1,
+      "conversationId": 3,
+      "id": 12
     }
   ],
   "users": [

@@ -7,7 +7,7 @@ export function UserProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const userId = useMemo(() => String(getLoggedUserId()), []);
+  const userId = useMemo(() => getLoggedUserId(), []);
 
   return <UserContext.Provider value={userId}>{children}</UserContext.Provider>;
 }

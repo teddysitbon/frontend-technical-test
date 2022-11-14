@@ -34,7 +34,7 @@ export function useGetConversations(): {
       );
 
       return conversationsSortedByMostRecent.map((conversation) => {
-        if (conversation.recipientId === Number(userId)) {
+        if (conversation.recipientId === userId) {
           return {
             ...conversation,
             recipientId: conversation.senderId,

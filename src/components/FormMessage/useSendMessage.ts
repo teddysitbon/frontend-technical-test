@@ -31,7 +31,7 @@ export function useSendMessage(conversationId: number): {
           {
             body: value,
             timestamp: DateTime.now().toUnixInteger(),
-            authorId: Number(userId),
+            authorId: userId,
             conversationId,
           },
           {

@@ -10,7 +10,7 @@ function Message({ message }: { message: Message }): JSX.Element {
   return (
     <div
       className={classNames(styles['message'], {
-        [styles[`message_receiver`]]: message.authorId === Number(userId),
+        [styles[`message_receiver`]]: message.authorId === userId,
       })}
     >
       {message.body}
